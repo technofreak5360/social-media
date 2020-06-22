@@ -4,8 +4,10 @@ const allposts = () => posts;
 const newPost = (parent, args) => {
     const post = {
         id: posts.length++,
-        title: args.title,
-        desc: args.desc
+        // title: args.input.title,
+        // desc: args.input.desc
+        // or we can use spreat operator
+        ...args.input
     };
     posts.push(post);
     return post;

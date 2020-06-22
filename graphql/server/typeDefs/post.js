@@ -11,8 +11,15 @@ type Query {
     totalPosts: Int!
     allposts: [post]!
 }
+
+
+input PostInput {
+    title: String!
+    desc: String!
+}
+
 type Mutation {
-    newPost(title: String!, desc: String!): post!
+    newPost(input: PostInput!): post!
 }
 
 `;
