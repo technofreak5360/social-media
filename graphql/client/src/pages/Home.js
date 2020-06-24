@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import ApolloClient from 'apollo-boost';
 import { gql } from 'apollo-boost';
 import { useQuery } from '@apollo/react-hooks';
-
+import { AuthContext } from '../context/authContext';
 const GET_ALL_POSTS = gql`
 {
   allposts {
@@ -15,6 +15,9 @@ const GET_ALL_POSTS = gql`
 const Home = () => {
 
     const { data, loading, error } = useQuery(GET_ALL_POSTS);
+
+    // access context  
+    const { state, dispatch } = useContext(AuthContext);
 
     if (loading) return <p className="p-5">Loading....</p>
     return (
