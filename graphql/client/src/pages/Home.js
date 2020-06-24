@@ -36,6 +36,7 @@ const Home = () => {
                     </div>
                 ))}
             </div>
+            {JSON.stringify(state.user)}
         </div>
     );
 };
