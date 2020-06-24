@@ -1,12 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
+import ApolloClient from 'apollo-boost';
+import { gql } from 'apollo-boost';
+import { ApolloProvider } from '@apollo/react-hooks';
+import Home from './pages/Home';
+const client = new ApolloClient({
+  uri: process.env.REACT_APP_GRAPHQL_ENDPOINT
+});
 
+const App = () => {
 
-function App() {
   return (
-    <div className="App">
-
-    </div>
+    <ApolloProvider client={client}>
+      <Home />
+    </ApolloProvider>
   );
-}
+};
 
 export default App;
