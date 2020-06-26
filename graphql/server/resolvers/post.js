@@ -1,6 +1,16 @@
 const posts = require('../temp');
+const { authCheck } = require('../helpers/auth');
+
+//querry
 const totalPosts = () => posts.length;
-const allposts = () => posts;
+const allposts = async (parent, args, { req }) => {
+
+    await authCheck(req);
+    posts
+};
+
+
+//mutation
 const newPost = (parent, args) => {
     const post = {
         id: posts.length++,

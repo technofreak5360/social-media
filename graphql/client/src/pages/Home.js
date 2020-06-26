@@ -23,7 +23,7 @@ const Home = () => {
     return (
         <div className="container">
             <div className="row p-5">
-                {data.allposts.map(p => (
+                {data && data.allposts.map(p => (
                     <div className="col-md-4" key={p.id}>
                         <div className="card">
                             <div className="card-body">

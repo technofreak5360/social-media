@@ -4,7 +4,7 @@ const path = require('path');
 const { fileLoader, mergeTypes, mergeResolvers } = require('merge-graphql-schemas');
 const mongoose = require('mongoose');
 require('dotenv').config();
-
+const { authCheck } = require('./helpers/auth');
 
 const app = express();
 
@@ -22,7 +22,8 @@ const resolvers = mergeResolvers(fileLoader(path.join(__dirname, './resolvers'))
 // graphql server
 const apolloServer = new ApolloServer({
     typeDefs,
-    resolvers
+    resolvers,
+    context: ({ req, res }) => ({ req, res })
 });
 
 
@@ -48,7 +49,7 @@ db();
 
 
 
-app.get('/rest', (req, res) => {
+app.get('/rest', authCheck, (req, res) => {
 
     res.json({
         data: 'you hit'
