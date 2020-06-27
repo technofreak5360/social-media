@@ -3,6 +3,20 @@ import { auth } from '../../firebase';
 import { toast } from 'react-toastify';
 import { useHistory } from 'react-router-dom';
 import { AuthContext } from '../../context/authContext'
+import { useMutation } from '@apollo/react-hooks';
+import { gql } from 'apollo-boost';
+
+const USER_CREATE = gql`
+  mutation userCreate
+   {
+       userCreate
+       {
+       username
+       email
+       }
+   }
+
+`
 
 const CompleteRegistration = () => {
     const { dispatch } = useContext(AuthContext);
@@ -15,6 +29,9 @@ const CompleteRegistration = () => {
     useEffect(() => {
         setEmail(window.localStorage.getItem('emailForRegisteration'));
     }, [history]);
+
+
+    const [userCreate] = useMutation(USER_CREATE)
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -41,6 +58,7 @@ const CompleteRegistration = () => {
                 });
 
                 // make api request to save/update date to mongodb
+                userCreate();
 
                 history.push('/');
             }
