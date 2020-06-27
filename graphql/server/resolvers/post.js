@@ -6,7 +6,7 @@ const totalPosts = () => posts.length;
 const allposts = async (parent, args, { req }) => {
 
     await authCheck(req);
-    posts
+    return posts
 };
 
 
